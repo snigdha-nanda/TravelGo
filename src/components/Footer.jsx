@@ -1,22 +1,26 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
     const navigate = useNavigate();
 
     const handleBlogLinkClick = (e) => {
         e.preventDefault();
-        navigate('/');
-        setTimeout(() => {
-            document.getElementById("blogs").scrollIntoView({ behavior: "smooth" });
-        }, 0);
+        if (window.location.pathname !== "/") {
+            navigate('/');
+            setTimeout(() => {
+                document.getElementById("blogs")?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+        } else {
+            document.getElementById("blogs")?.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
         <footer className="bg-gray-800 text-white py-12 mt-12">
             <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            <div>
+                <div>
                     <div className="flex items-center mb-4">
                         <img src="/favicon.png" alt="TravelGo Logo" className="h-18 w-18" />
                         <h1 className="text-4xl font-bold">TravelGo</h1>
@@ -29,16 +33,16 @@ const Footer = () => {
                     <h2 className="text-2xl font-semibold mb-4">Quick Links</h2>
                     <ul className="space-y-4">
                         <li>
-                            <a
-                                href="/#blogs"
-                                onClick={handleBlogLinkClick}
-                                className="hover:text-yellow-400"
-                            >
+                            <Link to="/" onClick={handleBlogLinkClick} className="hover:text-yellow-400">
                                 Blogs
-                            </a>
+                            </Link>
                         </li>
-                        <li><a href="/hotels" className="hover:text-yellow-400">Hotels</a></li>
-                        <li><a href="/about-us" className="hover:text-yellow-400">About Us</a></li>
+                        <li>
+                            <Link to="/hotels" className="hover:text-yellow-400">Hotels</Link>
+                        </li>
+                        <li>
+                            <Link to="/about-us" className="hover:text-yellow-400">About Us</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className='flex flex-col'>
@@ -55,16 +59,16 @@ const Footer = () => {
                     </div>
 
                     <div className="flex space-x-6">
-                        <a href="https://www.facebook.com" className="hover:text-yellow-400">
+                        <a href="https://www.facebook.com" className="hover:text-yellow-400" target="_blank" rel="noopener noreferrer">
                             <FaFacebook size={24} />
                         </a>
-                        <a href="https://twitter.com" className="hover:text-yellow-400">
+                        <a href="https://twitter.com" className="hover:text-yellow-400" target="_blank" rel="noopener noreferrer">
                             <FaTwitter size={24} />
                         </a>
-                        <a href="https://www.instagram.com" className="hover:text-yellow-400">
+                        <a href="https://www.instagram.com" className="hover:text-yellow-400" target="_blank" rel="noopener noreferrer">
                             <FaInstagram size={24} />
                         </a>
-                        <a href="https://www.linkedin.com" className="hover:text-yellow-400">
+                        <a href="https://www.linkedin.com" className="hover:text-yellow-400" target="_blank" rel="noopener noreferrer">
                             <FaLinkedin size={24} />
                         </a>
                     </div>
